@@ -32,7 +32,7 @@ class UserManager(BaseUserManager):
             email, first_name,last_name, phone_number,
             password=password,
         )
-        user.staff = True
+        user.is_staff = True
         user.save(using=self._db)
         return user
 
@@ -44,8 +44,8 @@ class UserManager(BaseUserManager):
             email, first_name,last_name, phone_number,
             password=password,
         )
-        user.staff = True
-        user.admin = True
+        user.is_staff = True
+        user.is_admin = True
         user.save(using=self._db)
         return user
 
@@ -66,9 +66,9 @@ class User(AbstractBaseUser):
     created_date = models.DateField(auto_now_add=True)
 
 
-    active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=False) # a admin user; non super-user
-    admin = models.BooleanField(default=False) # a superuser
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False) # a admin user; non super-user
+    is_admin = models.BooleanField(default=False) # a superuser
     # notice the absence of a "Password field", that's built in.
 
     objects = UserManager()
@@ -106,26 +106,7 @@ class User(AbstractBaseUser):
         # Simplest possible answer: Yes, always
         return True
 
-    @property
-    def is_staff(self):
-        "Is the user a member of staff?"
-        return self.staff
-
-    @property
-    def is_admin(self):
-        "Is the user a admin member?"
-        return self.admin
-
-    @property
-    def is_active(self):
-        "Is the user active?"
-        return self.active
-
-
-
-
-
-
 
 class Roles(models.Model):
+    # TODO: roles to be added
     pass

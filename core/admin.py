@@ -14,14 +14,14 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'admin',  'last_login', 'first_name')
-    list_filter = ('admin',)
+    list_display = ('email', 'is_admin',  'last_login', 'first_name')
+    list_filter = ('is_admin',)
     readonly_fields = ['created_date', 'last_login']
     fieldsets = (
-        (None, {'fields': ('email', )}),
+        (None, {'fields': ('email', 'password' )}),
         ('Personal info', {'fields': ('first_name', 'last_name', 'phone_number')}),
         ('Activity details', {'fields': ('created_date','last_login')}),
-        ('Permissions', {'fields': ('admin',)}),
+        ('Permissions', {'fields': ('is_admin',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
@@ -42,3 +42,4 @@ admin.site.register(User, UserAdmin)
 
 # Remove Group Model from admin. We're not using it.
 admin.site.unregister(Group)
+# TODO: groups to be used for permission management

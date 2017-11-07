@@ -3,8 +3,10 @@ from django.http.response import HttpResponse
 from django.views import generic
 from .models import User
 
-# Create your views here.
-from django.contrib.auth.decorators import login_required
+# Decorators to check login
+from django.contrib.auth.decorators import login_required  # function based views
+from django.contrib.auth.mixins import LoginRequiredMixin  # class based views
+# class MyView(LoginRequiredMixin, View):
 
 def handler404(request):
     # response = render_to_response('404.html', {},
