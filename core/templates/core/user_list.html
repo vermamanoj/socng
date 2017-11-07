@@ -1,0 +1,21 @@
+{% extends "base_template.html" %}
+
+{% block main_content %}
+    <h1>User List</h1>
+
+    {% if user_list %}
+
+    <table class="table">
+
+      {% for user in user_list %}
+      <tr>
+        <td><a href="{{ user.get_absolute_url }}">{{ user.email }}</a> </td>
+        <td>  ({{user.first_name}}) </td>
+      </tr>
+      {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no users created yet.</p>
+    {% endif %}       
+{% endblock main_content %}
