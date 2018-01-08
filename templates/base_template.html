@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,7 @@
     <title>Dashboard Template for Bootstrap</title>
     <!-- Bootstrap core CSS -->
     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static '' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Font awesome, to show icons -->
@@ -20,8 +22,10 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/socng_css.css' %}">
+
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -33,10 +37,10 @@
 
 <body>
 {% block top_navbar %}
-    <nav class="navbar  navbar-fixed-top">
+    <nav class="navbar  navbar-fixed-top navbar-inverse">
 {#    <nav class="navbar navbar-inverse navbar-fixed-top">#}
         <div class="container-fluid">
-            <div class="navbar-header">
+            <div class="navbar-header ">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                         aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
@@ -64,9 +68,14 @@
                             <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
-                    {% if user.is_authenticated %}
-                        <li class="fa fa-users" aria-hidden="true"></li>
-                        <li class="dropdown">
+{#                    {% if user.is_authenticated %}#}
+                    {#                    {% else %}#}
+{#                        <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>#}
+{#                    {% endif %}#}
+
+                    <li class="fa fa-user fa-2x" style="color:white; vertical-align: text-bottom" ></li>
+                    <li><a href="#">User</a></li>
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">{{ user.first_name }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -75,9 +84,7 @@
                         </ul>
                         </li>
 
-                    {% else %}
-                        <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
-                    {% endif %}
+
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">

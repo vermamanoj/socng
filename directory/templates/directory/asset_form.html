@@ -1,0 +1,27 @@
+{% extends "base_template.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block main_content %}
+
+    <div class="row">
+        <div class="col-lg-8 col-md-16">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading mb-20">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-light">Asset details</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+    <form action="" method="post" class="uniform">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <input type="submit" value="Submit" />
+                </form>
+                    </div></div></div></div></div>
+
+
+{% endblock main_content %}

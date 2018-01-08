@@ -4,11 +4,13 @@ from django.views import generic
 from .models import User
 
 # Decorators to check login
-from django.contrib.auth.decorators import login_required  # function based views
-from django.contrib.auth.mixins import LoginRequiredMixin  # class based views
-# class MyView(LoginRequiredMixin, View):
+from django.contrib.auth.decorators import login_required  # for function based views
+from django.contrib.auth.mixins import LoginRequiredMixin  # for class based views
+# class MyView(LoginRequiredMixin, View): # for class based views
+
 
 def handler404(request):
+    # TODO: to add handler for 404
     # response = render_to_response('404.html', {},
     #                               context_instance=RequestContext(request))
     response = HttpResponse("Error")
@@ -28,6 +30,7 @@ class UserListView(generic.ListView):
     queryset = User.objects.all()
     template_name = 'core/user_list.html'  # Specify your own template name/location
 
+
 class UserDetailView(generic.DetailView):
     model = User
 
@@ -44,3 +47,5 @@ class UserDetailView(generic.DetailView):
             'catalog/user_detail.html',
             context={'user': user_id, }
         )
+
+

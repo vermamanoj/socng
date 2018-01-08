@@ -27,6 +27,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGIN_REDIRECT_URL = '/'
 
 SECRET_KEY = env.SECRET_KEY
+
+# Used by
+FIELD_ENCRYPTION_KEY = env.FIELD_ENCRYPTION_KEY
+
 AUTH_USER_MODEL = 'core.User'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -44,7 +48,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Third party apps
+    'crispy_forms',
+    'encrypted_model_fields',
+    # Internal apps
     'core.apps.CoreConfig',
+
+    'customers.apps.CustomersConfig',
+    'directory.apps.DirectoryConfig',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +143,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Email backend
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Crispy template pack
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+

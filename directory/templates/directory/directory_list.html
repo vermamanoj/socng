@@ -1,0 +1,288 @@
+{% extends "base_template.html" %}
+
+{% block main_content %}
+    <div class="row">
+        <div class="col-lg-12 col-md-24">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading mb-20">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-light">{{ model_name }}</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                    <a href="#" data-toggle="modal" data-target="#myModal"><span class="fa fa-plus"></span></a>
+
+                        <h4><a href={{ url }}>Add {{ model_name }}</a></h4>
+                        {% if directory_list %}
+                            <div class="table-wrap">
+                            <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    {% for field in fields %}
+                                        <th>{{ field }}</th>
+                                    {% endfor %}
+                                </tr>
+                                </thead>
+                                {% for object in directory_list %}
+                                    <tr>
+                                        <td><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></td>
+                                        <td>{{ object.location }}</td>
+                                        <td> {{ object.vertical }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+
+
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                    data-target="#myModal">Add asset
+                            </button>
+
+                            <!-- Modal -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Modal Header</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Some text in the modal.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        {% else %}
+                            <p>There are no assets on-boarded yet.</p>
+                        {% endif %}
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark"><i class="icon-pie-chart mr-10"></i>Impressions</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <iframe class="chartjs-hidden-iframe"
+                                style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+                        <canvas id="chart_6" height="280" width="674"
+                                style="display: block; width: 674px; height: 280px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark"><i class="icon-clock mr-10"></i>Average Position</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div id="morris_extra_line_chart" class="morris-chart"
+                             style="height: 280px; position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                            <svg height="280" version="1.1" width="674" xmlns="http://www.w3.org/2000/svg"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 style="overflow: hidden; position: relative; left: -0.5px;">
+                                <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël
+                                    2.2.0
+                                </desc>
+                                <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
+                                <text x="35.5625" y="241" text-anchor="end" font-family="Varela Round" font-size="12px"
+                                      stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+                                </text>
+                                <path fill="none" stroke="#eeeeee" d="M48.0625,241H649" stroke-width="0.5"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                                <text x="35.5625" y="187" text-anchor="end" font-family="Varela Round" font-size="12px"
+                                      stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">75</tspan>
+                                </text>
+                                <path fill="none" stroke="#eeeeee" d="M48.0625,187H649" stroke-width="0.5"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                                <text x="35.5625" y="133" text-anchor="end" font-family="Varela Round" font-size="12px"
+                                      stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">150</tspan>
+                                </text>
+                                <path fill="none" stroke="#eeeeee" d="M48.0625,133H649" stroke-width="0.5"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                                <text x="35.5625" y="79" text-anchor="end" font-family="Varela Round" font-size="12px"
+                                      stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">225</tspan>
+                                </text>
+                                <path fill="none" stroke="#eeeeee" d="M48.0625,79H649" stroke-width="0.5"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                                <text x="35.5625" y="25" text-anchor="end" font-family="Varela Round" font-size="12px"
+                                      stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">300</tspan>
+                                </text>
+                                <path fill="none" stroke="#eeeeee" d="M48.0625,25H649" stroke-width="0.5"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                                <text x="649" y="253.5" text-anchor="middle" font-family="Varela Round" font-size="12px"
+                                      stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal" transform="matrix(1,0,0,1,0,7)">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2016</tspan>
+                                </text>
+                                <text x="548.889462574167" y="253.5" text-anchor="middle" font-family="Varela Round"
+                                      font-size="12px" stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal" transform="matrix(1,0,0,1,0,7)">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2015</tspan>
+                                </text>
+                                <text x="448.7789251483341" y="253.5" text-anchor="middle" font-family="Varela Round"
+                                      font-size="12px" stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal" transform="matrix(1,0,0,1,0,7)">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2014</tspan>
+                                </text>
+                                <text x="348.66838772250117" y="253.5" text-anchor="middle" font-family="Varela Round"
+                                      font-size="12px" stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal" transform="matrix(1,0,0,1,0,7)">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2013</tspan>
+                                </text>
+                                <text x="248.28357485166592" y="253.5" text-anchor="middle" font-family="Varela Round"
+                                      font-size="12px" stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal" transform="matrix(1,0,0,1,0,7)">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2012</tspan>
+                                </text>
+                                <text x="148.17303742583294" y="253.5" text-anchor="middle" font-family="Varela Round"
+                                      font-size="12px" stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal" transform="matrix(1,0,0,1,0,7)">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2011</tspan>
+                                </text>
+                                <text x="48.0625" y="253.5" text-anchor="middle" font-family="Varela Round"
+                                      font-size="12px" stroke="none" fill="#2f2c2c"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: &quot;Varela Round&quot;; font-size: 12px; font-weight: normal;"
+                                      font-weight="normal" transform="matrix(1,0,0,1,0,7)">
+                                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2010</tspan>
+                                </text>
+                                <path fill="#f6c77f" stroke="none"
+                                      d="M48.0625,205C73.09013435645824,190.6,123.14540306937471,150.1,148.17303742583294,147.4C173.20067178229118,144.70000000000002,223.25594049520768,178.0073871409029,248.28357485166592,183.4C273.3797780693747,188.80738714090288,323.57218450479235,199.6123119015048,348.66838772250117,190.6C373.6960220789594,181.6123119015048,423.7512907918759,114.55,448.7789251483341,111.4C473.80655950479235,108.25000000000001,523.8618282177088,171.70000000000002,548.889462574167,165.4C573.9170969306253,159.1,623.9723656435417,87.1,649,61L649,241L48.0625,241Z"
+                                      fill-opacity="0"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0;"></path>
+                                <path fill="none" stroke="#fcb03b"
+                                      d="M48.0625,205C73.09013435645824,190.6,123.14540306937471,150.1,148.17303742583294,147.4C173.20067178229118,144.70000000000002,223.25594049520768,178.0073871409029,248.28357485166592,183.4C273.3797780693747,188.80738714090288,323.57218450479235,199.6123119015048,348.66838772250117,190.6C373.6960220789594,181.6123119015048,423.7512907918759,114.55,448.7789251483341,111.4C473.80655950479235,108.25000000000001,523.8618282177088,171.70000000000002,548.889462574167,165.4C573.9170969306253,159.1,623.9723656435417,87.1,649,61"
+                                      stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                                <circle cx="48.0625" cy="205" r="2" fill="#fcb03b" stroke="#fcb03b" stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="148.17303742583294" cy="147.4" r="2" fill="#fcb03b" stroke="#fcb03b"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="248.28357485166592" cy="183.4" r="2" fill="#fcb03b" stroke="#fcb03b"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="348.66838772250117" cy="190.6" r="2" fill="#fcb03b" stroke="#fcb03b"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="448.7789251483341" cy="111.4" r="2" fill="#fcb03b" stroke="#fcb03b"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="548.889462574167" cy="165.4" r="2" fill="#fcb03b" stroke="#fcb03b"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="649" cy="61" r="2" fill="#fcb03b" stroke="#fcb03b" stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <path fill="#eea4c6" stroke="none"
+                                      d="M48.0625,183.4C73.09013435645824,179.8,123.14540306937471,167.2,148.17303742583294,169C173.20067178229118,170.8,223.25594049520768,206.7876880984952,248.28357485166592,197.8C273.3797780693747,188.7876880984952,323.57218450479235,105.1110807113543,348.66838772250117,97C373.6960220789594,88.91108071135432,423.7512907918759,124,448.7789251483341,133C473.80655950479235,142,523.8618282177088,169,548.889462574167,169C573.9170969306253,169,623.9723656435417,142,649,133L649,241L48.0625,241Z"
+                                      fill-opacity="0"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0;"></path>
+                                <path fill="none" stroke="#ea65a2"
+                                      d="M48.0625,183.4C73.09013435645824,179.8,123.14540306937471,167.2,148.17303742583294,169C173.20067178229118,170.8,223.25594049520768,206.7876880984952,248.28357485166592,197.8C273.3797780693747,188.7876880984952,323.57218450479235,105.1110807113543,348.66838772250117,97C373.6960220789594,88.91108071135432,423.7512907918759,124,448.7789251483341,133C473.80655950479235,142,523.8618282177088,169,548.889462574167,169C573.9170969306253,169,623.9723656435417,142,649,133"
+                                      stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                                <circle cx="48.0625" cy="183.4" r="2" fill="#ea65a2" stroke="#ea65a2" stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="148.17303742583294" cy="169" r="2" fill="#ea65a2" stroke="#ea65a2"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="248.28357485166592" cy="197.8" r="2" fill="#ea65a2" stroke="#ea65a2"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="348.66838772250117" cy="97" r="2" fill="#ea65a2" stroke="#ea65a2"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="448.7789251483341" cy="133" r="2" fill="#ea65a2" stroke="#ea65a2"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="548.889462574167" cy="169" r="2" fill="#ea65a2" stroke="#ea65a2"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="649" cy="133" r="2" fill="#ea65a2" stroke="#ea65a2" stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <path fill="#8696d3" stroke="none"
+                                      d="M48.0625,226.6C73.09013435645824,215.8,123.14540306937471,187.9,148.17303742583294,183.4C173.20067178229118,178.9,223.25594049520768,195.99261285909714,248.28357485166592,190.6C273.3797780693747,185.19261285909712,323.57218450479235,146.50861833105336,348.66838772250117,140.2C373.6960220789594,133.90861833105333,423.7512907918759,134.79999999999998,448.7789251483341,140.2C473.80655950479235,145.6,523.8618282177088,188.8,548.889462574167,183.4C573.9170969306253,178,623.9723656435417,118.6,649,97L649,241L48.0625,241Z"
+                                      fill-opacity="0"
+                                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 0;"></path>
+                                <path fill="none" stroke="#566fc9"
+                                      d="M48.0625,226.6C73.09013435645824,215.8,123.14540306937471,187.9,148.17303742583294,183.4C173.20067178229118,178.9,223.25594049520768,195.99261285909714,248.28357485166592,190.6C273.3797780693747,185.19261285909712,323.57218450479235,146.50861833105336,348.66838772250117,140.2C373.6960220789594,133.90861833105333,423.7512907918759,134.79999999999998,448.7789251483341,140.2C473.80655950479235,145.6,523.8618282177088,188.8,548.889462574167,183.4C573.9170969306253,178,623.9723656435417,118.6,649,97"
+                                      stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                                <circle cx="48.0625" cy="226.6" r="2" fill="#566fc9" stroke="#566fc9" stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="148.17303742583294" cy="183.4" r="2" fill="#566fc9" stroke="#566fc9"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="248.28357485166592" cy="190.6" r="2" fill="#566fc9" stroke="#566fc9"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="348.66838772250117" cy="140.2" r="2" fill="#566fc9" stroke="#566fc9"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="448.7789251483341" cy="140.2" r="2" fill="#566fc9" stroke="#566fc9"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="548.889462574167" cy="183.4" r="2" fill="#566fc9" stroke="#566fc9"
+                                        stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                                <circle cx="649" cy="97" r="2" fill="#566fc9" stroke="#566fc9" stroke-width="1"
+                                        style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle>
+                            </svg>
+                            <div class="morris-hover morris-default-style" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock main_content %}

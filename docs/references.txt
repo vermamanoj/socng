@@ -1,0 +1,4 @@
+1. Django development guide by Mozilla
+   https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django
+
+2.
